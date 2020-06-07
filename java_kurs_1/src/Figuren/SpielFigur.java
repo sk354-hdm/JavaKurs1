@@ -39,6 +39,7 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 	}
 	public void zeichne(Graphics2D g) {
 		g.setStroke(STRICH5);
+		g.setColor(Color.GREEN);
 		g.draw(this);
 		
 	}

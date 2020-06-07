@@ -12,7 +12,7 @@ import tools.Spiel;
 
 public class Aufgabe22 extends Spiel implements ActionListener{
 	
-	
+	SpielFigur figur1;
 	MausOverFarbeFigur figur2;
 	MausOverHellerFigur figur3;
 	DragAndDropFigur figur4;
@@ -30,16 +30,16 @@ public class Aufgabe22 extends Spiel implements ActionListener{
 	
 	@Override
 	protected void initialisiere() {
-		
-		figur2 = new MausOverFarbeFigur(40, 40, this);
-		figur3 = new MausOverHellerFigur(40, 100, Color.RED, this);
-		figur4 = new DragAndDropFigur(40,150,this);
+		figur1 = new SpielFigur(40,40,40, 40, this);
+		figur2 = new MausOverFarbeFigur(40, 100, this);
+		figur3 = new MausOverHellerFigur(40, 150, Color.RED, this);
+		figur4 = new DragAndDropFigur(40,200,this);
 	}
 
 	
 	@Override
 	protected void neuerSpielstand() {
-		
+		figur1.bewege();
 		figur2.bewege();
 		figur3.bewege();
 		figur4.bewege();
@@ -48,7 +48,7 @@ public class Aufgabe22 extends Spiel implements ActionListener{
 	
 	@Override
 	protected void zeichneSpielstand(Graphics2D g) {
-
+		figur1.zeichne(g);
 		figur2.zeichne(g);
 		figur3.zeichne(g);
 		figur4.zeichne(g);

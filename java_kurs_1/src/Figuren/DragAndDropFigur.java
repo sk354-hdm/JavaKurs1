@@ -17,25 +17,25 @@ public class DragAndDropFigur extends SpielFigur {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		wirdGezogen = this.contains(e.getPoint());
+		if(this.contains(e.getPoint())) {
+			wirdGezogen = true;
 		}
+	}
 		
-	public void mouseReleasedn(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) {
 		wirdGezogen = false;
 	}
-	public void MouseDraggen(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) {
 		if(wirdGezogen) {
 			this.x = e.getPoint().x-20;
 			this.y = e.getPoint().y-20;
 		}
 	}
 	public void zeichne(Graphics2D g) {
-		g.setBackground(Color.red);
+		g.setColor(Color.red);
 		g.fill(this);
-		
-		Point mausPos = spiel.getMousePosition();
-		if(mausPos != null && this.contains(mausPos)) {
-			g.setBackground(Color.green);
+		if(wirdGezogen) {
+			g.setColor(Color.green);
 			g.fill(this);
 		}
 	}

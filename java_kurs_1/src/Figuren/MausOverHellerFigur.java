@@ -20,13 +20,13 @@ public class MausOverHellerFigur extends SpielFigur{
 	}
 	
 	public void zeichne(Graphics2D g) {
+		g.setColor(farbeDunkel);
+		g.fill(this);
 		Point mausPos = spiel.getMousePosition();
 		if(mausPos != null && this.contains(mausPos)){
-			g.setBackground(farbeHell);
+			g.setColor(farbeHell);
 			g.fill(this); 
-		}else {
-			g.setBackground(farbeDunkel);
-			g.fill(this);
+		}
 	}
-}
+	
 }
