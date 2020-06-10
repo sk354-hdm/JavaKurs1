@@ -9,13 +9,13 @@ public class Aufgabe23 extends Spiel {
 	
 	private KlangFigur c,cis,d,dis,e,f,fis,g,gis,a,ais,h,c1;
 	
-	public static void main (String [] args) {
+	public static void main (String [] a) {
 		starteAnwendung();
 	}
 	
 	public Aufgabe23() {
 		super("Aufgabe 23", 200, 200);
-		
+	
 	}
 	
 	protected void initialisiere() {
