@@ -10,7 +10,7 @@ public class Clear extends Taste {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.setText("0");
+		anzeige.setText("0");
 		
 	}
 	

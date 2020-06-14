@@ -12,12 +12,11 @@ public class Ziffer extends Taste {
 		
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if ( this.neueEingabe) {
-			this.setText("");
+		if ( Taste.neueEingabe) {
+			anzeige.setText("");
 			Taste.neueEingabe = false;
-			anzeige.zifferEingeben(this.getText());
-		}
-		
+			}
+		anzeige.zifferEingeben(this.getText());
 	}
 
 }

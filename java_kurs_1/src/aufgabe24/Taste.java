@@ -8,7 +8,7 @@ import javax.swing.JButton;
 public abstract class Taste extends JButton implements ActionListener {
 	
 	protected Anzeige anzeige;
-	protected static boolean neueEingabe;
+	protected static boolean neueEingabe = true;
 	
 	public Taste (String wert, Anzeige anzeige) {
 		super(wert);
