@@ -27,7 +27,7 @@ public class ZielFigur extends SpielFigur implements ActionListener{
 		animationsLänge = 25;
 		trefferKlang = new Klang("/sound/boing.mp3"); //Platzhalter für die Sounddatei.
 		tick = new Timer(3000,this);
-		
+		;
 		
 	}
 	

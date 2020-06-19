@@ -2,6 +2,7 @@ package tools;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,8 +29,17 @@ public abstract class Spiel extends StandardAnwendung implements ActionListener 
 		 if(timer.isRunning()) {
 			 this.zeichneSpielstand(g);
 		 }
-	 }
+		 
+		 }
+	 
+	 public Rectangle getRand () {
+		 return this.getBounds();
+	}
+	 
 	 protected abstract void initialisiere();
+	 
 	 protected abstract void neuerSpielstand();
+	 
 	 protected abstract void zeichneSpielstand(Graphics2D g);
+	 
 }
