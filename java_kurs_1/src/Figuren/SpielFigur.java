@@ -25,6 +25,8 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 	protected int randReaktion = RAND_IGNORIEREN;
 	protected Klang randReaktionsKlang;
 	
+	protected double daempfung = 1.0, masse =1.0;
+	
 	public SpielFigur(double xC, double yC, double breite, double höhe, Spiel spiel) {
 		super(xC-breite/2, yC-höhe/2, breite, höhe);
 		this.spiel = spiel;
@@ -48,7 +50,7 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 				if(randReaktionsKlang != null) {
 					randReaktionsKlang.play();
 				}
-			}
+			
 		
 		if(randReaktion == RAND_STOP) {
 			this.bewegung.x = this.bewegung.y = 0;;
@@ -59,8 +61,13 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 		}
 		
 		}
+	}
+		
+		bewegung.x = bewegung.x*daempfung;
+		bewegung.y = bewegung.y*daempfung;
 		
 		this.amRandAusrichten();
+		
 	}
 	public Point2D.Double getBewegung() {
 		return bewegung;
@@ -90,6 +97,22 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 
 	}
 	
+	
+	public void setDaempfung(double d) {
+		daempfung = d;
+	}
+	
+	public double getDaempfung(){
+		return daempfung;
+	}
+	
+	public void setMasse(double m) {
+		masse = m;
+	}
+	
+	public double getMasse() {
+	return masse;
+	}	
 	
 	
 	@Override
