@@ -11,7 +11,7 @@ import Figuren.SpielFigur;
 import tools.Klang;
 import tools.Spiel;
 
-public class BilliardKugel extends SpielFigur {
+public class BillardKugel extends SpielFigur {
 	
 	private Color QUEUE_FARBE;
 	private BasicStroke QUEUE_STROKE;
@@ -21,8 +21,11 @@ public class BilliardKugel extends SpielFigur {
 	boolean zeigeQueue;
 	Line2D.Double queue;
 
-	public BilliardKugel(Color farbe, double xC, double yC, Spiel spiel) {
+	public BillardKugel(Color farbe, double xC, double yC, Spiel spiel) {
 		super(xC, yC, 40, 40, spiel);
+		this.farbe = farbe;
+		this.setRandReaktion(RAND_ABPRALLEN, QueueKlang);
+		this.setDaempfung(0.98);
 		kugel = new Ellipse2D.Double();
 		queue = new Line2D.Double();
 		QUEUE_FARBE = new Color(89,62,26);
@@ -31,19 +34,39 @@ public class BilliardKugel extends SpielFigur {
 	}
 	
 	public void zeichne(Graphics2D g) {
+		if(zeigeQueue) {
+			g.setStroke(QUEUE_STROKE);
+			g.setColor(QUEUE_FARBE);
+			queue.x2 = this.getCenterX();
+			queue.y2 = this.getCenterY();
+			g.draw(queue);
+		}
+		kugel.setFrame(this);
+		g.setColor(farbe);
+		g.fill(kugel);
 		
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		
+		if(this.contains(e.getPoint())) {
+			zeigeQueue = true;
+			queue.x1 = e.getX();
+			queue.y1 = e.getY();
+		}
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		
+		queue.x1 = e.getX();
+		queue.y1 = e.getY();
 	}
 	
 	public void mouseReleased(MouseEvent e) {
-		
+		if(zeigeQueue) {
+			bewegung.x = 0.12 * (queue.x2 - queue.x1);
+			bewegung.y = 0.12 * (queue.y2 - queue.y1);
+		}
+		zeigeQueue = false;
+		QueueKlang.play((bewegung.distance(0,0)*0.03));
 	}
 	
 

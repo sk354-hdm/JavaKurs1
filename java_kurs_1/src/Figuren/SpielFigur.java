@@ -14,13 +14,15 @@ import tools.Spiel;
 
 public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements MouseListener, MouseMotionListener{
 	
+	public static final int RAND_IGNORIEREN = 0; 
+	public static final int RAND_STOP = 1;
+	public static final int RAND_ABPRALLEN = 2;
+	
 	protected static final java.awt.Stroke STRICH5 = new BasicStroke(5);
 	protected Point2D.Double bewegung;
 	protected Spiel spiel;
 	
-	public static final int RAND_IGNORIEREN = 0; 
-	public static final int RAND_STOP = 1;
-	public static final int RAND_ABPRALLEN = 2;
+	
 	
 	protected int randReaktion = RAND_IGNORIEREN;
 	protected Klang randReaktionsKlang;
@@ -53,22 +55,22 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 			
 		
 		if(randReaktion == RAND_STOP) {
-			this.bewegung.x = this.bewegung.y = 0;;
+			this.bewegung.x = this.bewegung.y = 0;; 
 		}
 		if(randReaktion == RAND_ABPRALLEN) {
 			if(this.x<rand.x || this.x+this.width>rand.width+rand.x) bewegung.x = -bewegung.x;
 			if(this.y<rand.y || this.y+this.height>rand.height+rand.y) bewegung.y = -bewegung.y;
 		}
 		
+			}
 		}
-	}
 		
 		bewegung.x = bewegung.x*daempfung;
 		bewegung.y = bewegung.y*daempfung;
 		
 		this.amRandAusrichten();
-		
 	}
+	
 	public Point2D.Double getBewegung() {
 		return bewegung;
 	}
