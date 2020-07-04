@@ -30,8 +30,8 @@ public class Billard extends Spiel{
 		kugeln = new LinkedList<BillardKugel>();
 		rand = new java.awt.Rectangle();
 		kugeln.add(new BillardKugel(Color.RED,500,400,this));
-		kugeln.add(new BillardKugel(Color.BLACK,500,400,this));
-		kugeln.add(new BillardKugel(Color.WHITE,500,400,this));
+		kugeln.add(new BillardKugel(Color.BLACK,600,400,this));
+		kugeln.add(new BillardKugel(Color.WHITE,700,400,this));
 		
 	}
 
