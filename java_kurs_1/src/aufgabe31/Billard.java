@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import Figuren.FigurReaktion;
 import tools.Klang;
 import tools.Spiel;
 
@@ -13,7 +14,8 @@ public class Billard extends Spiel{
 	Color FELD_FARBE;
 	LinkedList<BillardKugel> kugeln;
 	java.awt.Rectangle rand;
-	LinkedList<ElastischerStoss> reaktionen;
+	LinkedList<FigurReaktion> reaktionen;
+	LinkedList<BillardLoch> loecher;
 	
 	public static void main(String[] args) {
 		starteAnwendung();
@@ -35,6 +37,16 @@ public class Billard extends Spiel{
 		bg.setBasisPegel(0.5);
 		bg.loop();
 		
+		loecher = new LinkedList<BillardLoch>();									//initialisierung der löcher
+		loecher.add(new BillardLoch(BillardLoch.LINKS, BillardLoch.OBEN,this));
+		loecher.add(new BillardLoch(BillardLoch.LINKS, BillardLoch.UNTEN,this));
+		loecher.add(new BillardLoch(BillardLoch.MITTE, BillardLoch.OBEN,this));
+		loecher.add(new BillardLoch(BillardLoch.MITTE, BillardLoch.UNTEN,this));
+		loecher.add(new BillardLoch(BillardLoch.RECHTS, BillardLoch.UNTEN,this));
+		loecher.add(new BillardLoch(BillardLoch.RECHTS, BillardLoch.OBEN,this));
+		
+
+		
 		kugeln = new LinkedList<BillardKugel>();            //Initialisierung der Kugeln
 		rand = new java.awt.Rectangle();
 		
@@ -55,7 +67,7 @@ public class Billard extends Spiel{
 		x = x+distanz;
 		} 
 		
-		reaktionen = new LinkedList<ElastischerStoss>();    //Initialisierung der reaktionen
+		reaktionen = new LinkedList<FigurReaktion>();    //Initialisierung der reaktionen
 		
 		for(int i = 0; i < kugeln.size() -1; i++) {
 			for(int j = i+1; j < kugeln.size(); j++) {
@@ -63,6 +75,11 @@ public class Billard extends Spiel{
 			}
 		}
 		
+		for(int i = 0; i < loecher.size()-1;i++) {
+			for(int k = i + 1; k < kugeln.size();k++) {
+				reaktionen.add(new BillardLochReaktion(loecher.get(i),kugeln.get(k)));
+			}
+		}
 	}
 
 	@Override
@@ -72,7 +89,7 @@ public class Billard extends Spiel{
 			b.bewege();
 		}
 		
-		for(ElastischerStoss r: reaktionen) {
+		for(FigurReaktion r: reaktionen) {
 			r.reagiere();
 		}
 		
@@ -82,6 +99,9 @@ public class Billard extends Spiel{
 	protected void zeichneSpielstand(Graphics2D g) {
 		g.setColor(FELD_FARBE);
 		g.fill(this.getRand());
+		for(BillardLoch l: loecher) {
+			l.zeichne(g);
+		}
 		for(BillardKugel b: kugeln) {
 			b.zeichne(g);
 		}

@@ -99,6 +99,11 @@ public class SpielFigur extends java.awt.geom.Rectangle2D.Double implements Mous
 
 	}
 	
+	public Spiel getSpiel() {
+		return spiel;
+	}
+	
+	
 	
 	public void setDaempfung(double d) {
 		daempfung = d;

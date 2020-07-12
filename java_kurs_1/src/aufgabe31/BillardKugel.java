@@ -72,5 +72,9 @@ public class BillardKugel extends SpielFigur {
 		QueueKlang.play((bewegung.distance(0,0)*0.03));
 	}
 	
+	public Color getFarbe() {
+		return farbe;
+	}
+	
 
 }
